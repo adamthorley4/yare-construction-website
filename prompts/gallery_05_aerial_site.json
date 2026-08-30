@@ -1,0 +1,5 @@
+{
+  "prompt": "Aerial drone photograph, shot from a DJI-style drone at 40 metres altitude, 24mm equivalent lens at f/4, straight-down oblique angle around 45 degrees. A house extension construction site on flat Norfolk marshland beside a wide, slow river with visible reed beds along its banks. The building footprint shows a completed original brick house with a part-built timber-framed extension attached, roof trusses installed but not yet covered, a scattering of construction materials and a small yellow excavator parked beside a stack of blockwork, tyre tracks in the mud driveway. Wide flat fenland fields beyond in a patchwork of green and brown, a distant church spire on the horizon, overcast soft daylight typical of East Anglia, muted natural colour palette. Sharp focus throughout, realistic drone photography grain and slight haze at the horizon.",
+  "negative_prompt": "illustration, CGI, render, plastic texture, oversaturation, lens flare, people, text, watermark, cartoon, mountains, ocean, urban skyline",
+  "api_parameters": { "resolution": "2K", "output_format": "jpg", "aspect_ratio": "16:9" }
+}

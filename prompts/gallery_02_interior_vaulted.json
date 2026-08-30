@@ -1,0 +1,5 @@
+{
+  "prompt": "Interior architectural photograph, 24mm lens at f/8, ISO 400, shot low and wide inside a vaulted open-plan living space in a contemporary UK house extension. Exposed structural steel ridge beam painted matte black running the length of the vaulted ceiling, glazed apex window at the far gable letting in soft overcast daylight, wide-plank oiled oak flooring reflecting the light faintly, whitewashed brick feature wall on one side. Minimal furnishing: a linen sofa and a single leather armchair, no clutter. Soft directional daylight from the left through full-height glazing, visible dust motes in the light beam, natural colour temperature, no artificial warmth added. Crisp focus front to back, real architectural photography texture and grain.",
+  "negative_prompt": "illustration, CGI, render, plastic texture, oversaturation, lens flare, people, text, watermark, cartoon, over-styled staging",
+  "api_parameters": { "resolution": "2K", "output_format": "jpg", "aspect_ratio": "3:2" }
+}

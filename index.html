@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yare Construction — Design &amp; Build, Norfolk &amp; Suffolk</title>
+<meta name="description" content="Yare Construction is a design-and-build firm working across Norfolk and Suffolk — extensions, new builds, renovations and restorations.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800;900&family=Public+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ═══ LOADER ═══ -->
+<div id="loader">
+  <div class="loader-mark">YARE</div>
+  <div class="loader-bar-track"><div id="loader-bar"></div></div>
+  <div id="loader-percent">0%</div>
+</div>
+
+<!-- ═══ HEADER ═══ -->
+<header id="site-header">
+  <a href="#top" class="logo">
+    <span class="logo-main">YARE</span>
+    <span class="logo-sub">CONSTRUCTION</span>
+  </a>
+  <nav class="site-nav">
+    <a href="#work">Work</a>
+    <a href="#services">Services</a>
+    <a href="#process">Process</a>
+    <a href="#about">About</a>
+  </nav>
+  <a href="#contact" class="btn-quote">Get a Quote</a>
+  <button id="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+</header>
+
+<!-- ═══ FIXED CANVAS (hero frame scrub) ═══ -->
+<canvas id="canvas"></canvas>
+
+<!-- ═══ HERO OVERLAY ═══ -->
+<div id="hero-overlay">
+  <div class="hero-label">PRECISION BUILT &middot; NORFOLK &amp; SUFFOLK</div>
+  <h1 class="hero-title">
+    <span class="hero-word">YARE</span>
+    <span class="hero-word hero-word-sub">CONSTRUCTION</span>
+  </h1>
+  <p class="hero-tagline">Design-and-build, from the River Yare outward.</p>
+  <div class="hero-scroll-indicator">
+    <span>SCROLL</span>
+    <div class="scroll-line"></div>
+  </div>
+</div>
+
+<!-- ═══ MARQUEE (fixed) ═══ -->
+<div id="marquee-materials" class="marquee-wrap">
+  <div class="marquee-text">STEEL&nbsp;&mdash;&nbsp;TIMBER&nbsp;&mdash;&nbsp;GLASS&nbsp;&mdash;&nbsp;STONE&nbsp;&mdash;&nbsp;STEEL&nbsp;&mdash;&nbsp;TIMBER&nbsp;&mdash;&nbsp;GLASS&nbsp;&mdash;&nbsp;STONE&nbsp;&mdash;&nbsp;STEEL&nbsp;&mdash;&nbsp;TIMBER&nbsp;&mdash;&nbsp;GLASS&nbsp;&mdash;&nbsp;STONE&nbsp;&mdash;&nbsp;</div>
+</div>
+
+<!-- ═══ SCROLL CONTAINER (text overlays during hero scrub) ═══ -->
+<div id="scroll-container">
+  <section class="scroll-section align-left">
+    <div class="section-inner">
+      <div class="section-label">001 &mdash; THE FRAME</div>
+      <h2 class="section-heading">Every build starts with steel.</h2>
+      <p class="section-body">Portal frames and precision-cut timber studwork, engineered and signed off before a single board goes up. What you can't see is what keeps the building honest for the next fifty years.</p>
+    </div>
+  </section>
+
+  <section class="scroll-section align-right">
+    <div class="section-inner">
+      <div class="section-label">002 &mdash; THE CRAFT</div>
+      <h2 class="section-heading">Finished by hand, not by shortcut.</h2>
+      <p class="section-body">Timber cladding cut and fitted on site, corten steel left to weather naturally, joinery checked twice before it's ever called done.</p>
+    </div>
+  </section>
+
+  <section class="scroll-section align-left">
+    <div class="section-inner">
+      <div class="section-label">003 &mdash; THE RESULT</div>
+      <h2 class="section-heading">From site to sanctuary.</h2>
+      <p class="section-body">The same plot, the same bones &mdash; just finished. Every Yare project ends the way it started: built to be lived in, not just looked at.</p>
+    </div>
+  </section>
+</div>
+
+<!-- ═══ POST-SCROLL CONTENT (solid, covers canvas) ═══ -->
+<div id="post-scroll-wrap">
+
+  <!-- STATS -->
+  <section class="stats-static">
+    <div class="stats-grid">
+      <div class="stat reveal-item">
+        <div class="stat-number" data-decimals="0">15</div>
+        <div class="stat-label">Years Trading</div>
+      </div>
+      <div class="stat reveal-item">
+        <div class="stat-number" data-decimals="0">120</div>
+        <div class="stat-suffix">+</div>
+        <div class="stat-label">Projects Delivered</div>
+      </div>
+      <div class="stat reveal-item">
+        <div class="stat-number" data-decimals="0">10</div>
+        <div class="stat-suffix">YR</div>
+        <div class="stat-label">Structural Warranty</div>
+      </div>
+      <div class="stat reveal-item">
+        <div class="stat-number" data-decimals="0">98</div>
+        <div class="stat-suffix">%</div>
+        <div class="stat-label">Client Satisfaction</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services" class="services-section">
+    <div class="services-head reveal-item">
+      <div class="section-label-static">WHAT WE BUILD</div>
+      <h2 class="big-heading">Four ways in.</h2>
+    </div>
+
+    <div class="service-row align-left reveal-item">
+      <div class="service-num">01</div>
+      <div class="service-copy">
+        <h3>Extensions &amp; Additions</h3>
+        <p>Single and double-storey extensions designed to read as part of the original house &mdash; not bolted onto it.</p>
+      </div>
+    </div>
+    <div class="service-row align-right reveal-item">
+      <div class="service-num">02</div>
+      <div class="service-copy">
+        <h3>New Builds</h3>
+        <p>Ground-up self-builds across Norfolk and Suffolk, from steel frame to final coat of paint.</p>
+      </div>
+    </div>
+    <div class="service-row align-left reveal-item">
+      <div class="service-num">03</div>
+      <div class="service-copy">
+        <h3>Renovations &amp; Restorations</h3>
+        <p>Period cottages and farmhouses, brought back to standard without losing what made them worth restoring.</p>
+      </div>
+    </div>
+    <div class="service-row align-right reveal-item">
+      <div class="service-num">04</div>
+      <div class="service-copy">
+        <h3>Design &amp; Planning</h3>
+        <p>In-house drawings, planning applications and building regulations &mdash; one team, start to finish.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section id="process" class="process-section">
+    <div class="process-head reveal-item">
+      <div class="section-label-static">HOW WE WORK</div>
+      <h2 class="big-heading">Site to handover.</h2>
+    </div>
+    <div class="process-grid">
+      <div class="process-step reveal-item">
+        <div class="process-num">01</div>
+        <h3>Consult</h3>
+        <p>A site visit and an honest conversation about scope, budget and timeline.</p>
+      </div>
+      <div class="process-step reveal-item">
+        <div class="process-num">02</div>
+        <h3>Design</h3>
+        <p>Drawings, planning and building regs handled in-house before a spade goes in the ground.</p>
+      </div>
+      <div class="process-step reveal-item">
+        <div class="process-num">03</div>
+        <h3>Build</h3>
+        <p>A small, direct team on site &mdash; no subcontractor chains, no guesswork.</p>
+      </div>
+      <div class="process-step reveal-item">
+        <div class="process-num">04</div>
+        <h3>Handover</h3>
+        <p>A finished building, a full spec sheet, and a number you can still call.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section id="work" class="gallery-section">
+    <div class="gallery-head reveal-item">
+      <div class="section-label-static">RECENT WORK</div>
+      <h2 class="big-heading">A few we're proud of.</h2>
+    </div>
+    <div class="gallery-grid">
+      <figure class="gallery-item reveal-item">
+        <img src="images/gallery_01_exterior_dusk.jpg" alt="Riverside extension exterior at dusk, Norfolk Broads">
+        <figcaption>Riverside Extension &mdash; Norfolk Broads</figcaption>
+      </figure>
+      <figure class="gallery-item reveal-item">
+        <img src="images/gallery_02_interior_vaulted.jpg" alt="Vaulted living space with exposed steel ridge beam">
+        <figcaption>Vaulted Living Space &mdash; Barn-Style Extension</figcaption>
+      </figure>
+      <figure class="gallery-item reveal-item">
+        <img src="images/gallery_03_flint_cottage.jpg" alt="Restored Norfolk flint and brick cottage exterior">
+        <figcaption>Flint &amp; Brick Restoration &mdash; South Norfolk</figcaption>
+      </figure>
+      <figure class="gallery-item reveal-item">
+        <img src="images/gallery_04_steel_detail.jpg" alt="Close-up of structural steel beam connection">
+        <figcaption>Structural Steel &mdash; Precision Engineering</figcaption>
+      </figure>
+      <figure class="gallery-item reveal-item">
+        <img src="images/gallery_05_aerial_site.jpg" alt="Aerial view of a house extension under construction beside a river">
+        <figcaption>Site Progress &mdash; Riverside New Build</figcaption>
+      </figure>
+      <figure class="gallery-item reveal-item">
+        <img src="images/gallery_06_kitchen_extension.jpg" alt="Kitchen extension interior with glazed roof lantern">
+        <figcaption>Kitchen Extension &mdash; Glazed Roof Lantern</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ABOUT / CRAFT -->
+  <section id="about" class="about-section">
+    <div class="about-copy reveal-item">
+      <div class="section-label-static">WHO WE ARE</div>
+      <h2 class="big-heading">Built the way we'd build for ourselves.</h2>
+      <p>Yare Construction is a small design-and-build team working across Norfolk and Suffolk. We keep projects small enough that the people who draw them are the people who build them &mdash; no call centres, no handoffs between departments that have never met. Every job gets the same level of attention, whether it's a single-storey extension or a ground-up build on the river.</p>
+    </div>
+    <div class="about-image reveal-item">
+      <img src="images/gallery_07_craft_detail.jpg" alt="Builder's hands marking up a blueprint on site">
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials-section">
+    <div class="testimonials-head reveal-item">
+      <div class="section-label-static">WHAT CLIENTS SAY</div>
+    </div>
+    <div class="testimonials-grid">
+      <blockquote class="reveal-item">
+        <p>&ldquo;They treated the extension like it was their own house. Every question answered, no shortcuts.&rdquo;</p>
+        <cite>Homeowner, Norwich</cite>
+      </blockquote>
+      <blockquote class="reveal-item">
+        <p>&ldquo;The frame went up in a week and the finish was better than we'd hoped for.&rdquo;</p>
+        <cite>Client, South Norfolk</cite>
+      </blockquote>
+      <blockquote class="reveal-item">
+        <p>&ldquo;Design, planning, build &mdash; one number to call the whole way through.&rdquo;</p>
+        <cite>Homeowner, Loddon</cite>
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- TRUST BADGES -->
+  <section class="badges-strip reveal-item">
+    <span>FULLY INSURED &middot; &pound;5M PUBLIC LIABILITY</span>
+    <span>15 YEARS TRADING</span>
+    <span>LOCAL TO NORFOLK &amp; SUFFOLK</span>
+    <span>FREE NO-OBLIGATION QUOTE</span>
+  </section>
+
+  <!-- CTA / CONTACT -->
+  <section id="contact" class="cta-section">
+    <div class="cta-head reveal-item">
+      <div class="section-label-static">START YOUR PROJECT</div>
+      <h2 class="big-heading">Tell us what you're planning.</h2>
+      <p>Fill in a few details and we'll be in touch to talk through the next steps.</p>
+    </div>
+    <form id="quote-form" class="quote-form reveal-item">
+      <div class="form-row">
+        <label for="f-name">Name</label>
+        <input type="text" id="f-name" name="name" required>
+      </div>
+      <div class="form-row form-row-half">
+        <div>
+          <label for="f-email">Email</label>
+          <input type="email" id="f-email" name="email" required>
+        </div>
+        <div>
+          <label for="f-phone">Phone</label>
+          <input type="tel" id="f-phone" name="phone">
+        </div>
+      </div>
+      <div class="form-row">
+        <label for="f-type">Project Type</label>
+        <select id="f-type" name="type">
+          <option>Extension</option>
+          <option>New Build</option>
+          <option>Renovation</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <label for="f-message">Tell us about the project</label>
+        <textarea id="f-message" name="message" rows="4"></textarea>
+      </div>
+      <button type="submit" class="btn-submit">Send Enquiry</button>
+      <div id="form-success" class="form-success" hidden>Thanks &mdash; we've got your details and we'll be in touch soon.</div>
+    </form>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-top">
+      <div class="footer-logo">
+        <span class="logo-main">YARE</span>
+        <span class="logo-sub">CONSTRUCTION</span>
+      </div>
+      <nav class="footer-nav">
+        <a href="#work">Work</a>
+        <a href="#services">Services</a>
+        <a href="#process">Process</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+    <div class="footer-bottom">
+      <p>Norwich, Norfolk &mdash; building along the Yare and beyond.</p>
+      <p>hello@yareconstruction.co.uk &middot; 01603 000 000</p>
+      <p class="footer-copyright">&copy; 2026 Yare Construction.</p>
+    </div>
+  </footer>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

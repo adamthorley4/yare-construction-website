@@ -1,0 +1,5 @@
+{
+  "prompt": "Interior architectural photograph, 24mm lens at f/7.1, ISO 320, eye-level view inside a finished contemporary kitchen extension. A glazed flat roof lantern overhead flooding the space with soft daylight, matte black steel-framed Crittall-style sliding doors fully open to a garden, handleless dark green painted cabinetry, a large pale stone kitchen island with a single bowl of lemons, polished concrete floor with a faint trowel texture. Midday overcast light through the roof glazing creating soft diffused shadows, a hint of condensation on one window pane, real material texture on the stone and concrete. Crisp architectural photography detail, natural colour temperature, no over-processing.",
+  "negative_prompt": "illustration, CGI, render, plastic texture, oversaturation, lens flare, people, text, watermark, cartoon, clutter, warm yellow cast",
+  "api_parameters": { "resolution": "2K", "output_format": "jpg", "aspect_ratio": "3:2" }
+}

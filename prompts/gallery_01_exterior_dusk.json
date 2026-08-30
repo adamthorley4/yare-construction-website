@@ -1,0 +1,5 @@
+{
+  "prompt": "Professional architectural photograph, 24mm tilt-shift lens at f/8, ISO 100, straight verticals, no distortion. Exterior of a finished contemporary two-storey timber-and-glass house extension in rural Norfolk, England, photographed at dusk. Dark stained larch cladding on the upper storey, full-height black aluminium-framed glazing on the ground floor with warm interior light spilling out onto a stone patio, a single weathered corten steel panel as a vertical accent at the corner. Flat warm-toned lawn in the foreground with long shadows, a mature oak tree silhouette at the edge of frame, deep blue dusk sky with the last warm light on the horizon. Fine architectural photography grain, natural colour grading, no HDR halo, crisp material textures on the timber grain and steel patina.",
+  "negative_prompt": "illustration, CGI, render, plastic texture, oversaturation, lens flare, people, text, watermark, daytime, scaffolding, cartoon",
+  "api_parameters": { "resolution": "2K", "output_format": "jpg", "aspect_ratio": "3:2" }
+}

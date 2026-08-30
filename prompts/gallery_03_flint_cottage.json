@@ -1,0 +1,5 @@
+{
+  "prompt": "Documentary architectural photograph, 35mm lens at f/6.3, ISO 200, straight-on elevation view. A traditionally restored Norfolk flint-and-red-brick cottage, exterior renovation recently completed. Knapped flint flushwork panels alternating with reclaimed red brick coursing, a new slate roof with a matching reclaimed-brick chimney stack, original timber sash windows restored and repainted heritage sage green, a solid oak front door. Overcast midday light, soft even shadows, damp flagstone path in the foreground, a few raindrops on the flint surface catching the light. Real material texture on the flint knapping and brick weathering, natural colour grading, no stylisation.",
+  "negative_prompt": "illustration, CGI, render, plastic texture, oversaturation, lens flare, people, text, watermark, cartoon, modern glass extension, scaffolding",
+  "api_parameters": { "resolution": "2K", "output_format": "jpg", "aspect_ratio": "3:2" }
+}

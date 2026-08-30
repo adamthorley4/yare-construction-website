@@ -1,0 +1,5 @@
+{
+  "prompt": "Close-up documentary photograph, 50mm lens at f/2.8, ISO 400, shot from directly above. A pair of weathered hands belonging to a builder in their forties, visible calluses, dirt under the fingernails, faint scarring on the knuckles, resting on an unrolled architectural blueprint spread over a plywood site table. One hand holds a carpenter's pencil pointing to a detail on the drawing, the other steadies the paper against a light breeze. Beside the blueprint: a spirit level, a folding site rule, and a chipped enamel mug of tea. Soft natural window light from the left, slightly overcast, realistic skin texture and fabric weave on a checked shirt cuff, no beautification or skin smoothing. Documentary realism, natural grain, no studio lighting.",
+  "negative_prompt": "illustration, CGI, render, plastic skin, beautified hands, manicured nails, oversaturation, lens flare, visible face, text readable on blueprint, watermark, cartoon, studio lighting",
+  "api_parameters": { "resolution": "2K", "output_format": "jpg", "aspect_ratio": "4:5" }
+}
