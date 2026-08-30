@@ -17,9 +17,6 @@
   const HERO_FADE_END = 0.08;
 
   // ─── DOM refs ────────────────────────────────────────────────────
-  const loader          = document.getElementById("loader");
-  const loaderBar       = document.getElementById("loader-bar");
-  const loaderPercent   = document.getElementById("loader-percent");
   const heroOverlay     = document.getElementById("hero-overlay");
   const canvas          = document.getElementById("canvas");
   const ctx              = canvas.getContext("2d");
@@ -76,42 +73,35 @@
   }
 
   // ─── Frame loader ────────────────────────────────────────────────
-  function loadFrames(onProgress, onComplete) {
-    let loaded = 0;
-    const phase1 = Math.min(12, FRAME_COUNT);
+  // Frame 0 loads first and unblocks the page immediately; the rest
+  // stream in behind it so scrubbing has no visible loading screen.
+  function loadFrames(onFirstFrameReady) {
+    const first = new Image();
+    first.onload = function () {
+      frames[0] = first;
+      sampleBgColor(first);
+      drawFrame(0);
+      onFirstFrameReady();
+      loadRemainingFrames();
+    };
+    first.onerror = function () {
+      onFirstFrameReady();
+      loadRemainingFrames();
+    };
+    first.src = FRAME_DIR + "frame_0001" + FRAME_EXT;
+  }
 
-    function markLoaded(idx, img) {
-      frames[idx] = img;
-      loaded++;
-      onProgress(loaded / FRAME_COUNT);
-      if (loaded === FRAME_COUNT) onComplete();
-    }
-
-    for (let i = 0; i < phase1; i++) {
+  function loadRemainingFrames() {
+    for (let i = 1; i < FRAME_COUNT; i++) {
       (function (idx) {
         const img = new Image();
         img.onload = function () {
-          if (idx === 0) { sampleBgColor(img); drawFrame(0); }
-          markLoaded(idx, img);
+          frames[idx] = img;
+          if (idx % 20 === 0) sampleBgColor(img);
         };
-        img.onerror = function () { markLoaded(idx, null); };
         img.src = FRAME_DIR + "frame_" + pad(idx + 1, 4) + FRAME_EXT;
       })(i);
     }
-
-    setTimeout(function () {
-      for (let i = phase1; i < FRAME_COUNT; i++) {
-        (function (idx) {
-          const img = new Image();
-          img.onload = function () {
-            if (idx % 20 === 0) sampleBgColor(img);
-            markLoaded(idx, img);
-          };
-          img.onerror = function () { markLoaded(idx, null); };
-          img.src = FRAME_DIR + "frame_" + pad(idx + 1, 4) + FRAME_EXT;
-        })(i);
-      }
-    }, 100);
   }
 
   // ─── Hero entrance animation ──────────────────────────────────────
@@ -272,24 +262,15 @@
     initNavToggle();
     initQuoteForm();
 
-    loadFrames(
-      function (ratio) {
-        const pct = Math.round(ratio * 100);
-        loaderBar.style.width = pct + "%";
-        loaderPercent.textContent = pct + "%";
-      },
-      function () {
-        loader.classList.add("hidden");
-        requestAnimationFrame(function () { drawFrame(0); });
-        animateHero();
-        initLenis();
-        initHeroOverlayFade();
-        initFrameScrubbing();
-        initMarquee();
-        initCounters();
-        initRevealItems();
-      }
-    );
+    loadFrames(function () {
+      animateHero();
+      initLenis();
+      initHeroOverlayFade();
+      initFrameScrubbing();
+      initMarquee();
+      initCounters();
+      initRevealItems();
+    });
   }
 
   if (document.readyState === "loading") {
