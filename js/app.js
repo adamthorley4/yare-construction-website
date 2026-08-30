@@ -106,14 +106,12 @@
 
   // ─── Hero entrance animation ──────────────────────────────────────
   function animateHero() {
-    const label     = heroOverlay.querySelector(".hero-label");
     const words     = heroOverlay.querySelectorAll(".hero-word");
     const tagline   = heroOverlay.querySelector(".hero-tagline");
     const indicator = heroOverlay.querySelector(".hero-scroll-indicator");
 
     gsap.timeline({ delay: 0.3 })
-      .to(label,     { opacity: 1, duration: 0.8, ease: "power2.out" })
-      .to(words,     { opacity: 1, y: 0, duration: 1.1, stagger: 0.18, ease: "power4.out" }, "-=0.4")
+      .to(words,     { opacity: 1, y: 0, duration: 1.1, stagger: 0.18, ease: "power4.out" })
       .to(tagline,   { opacity: 1, duration: 0.9, ease: "power2.out" }, "-=0.5")
       .to(indicator, { opacity: 1, duration: 0.8, ease: "power2.out" }, "-=0.3");
   }
