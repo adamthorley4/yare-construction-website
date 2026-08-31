@@ -1,230 +1,48 @@
 /* ═══════════════════════════════════════════════════════════════════
    YARE CONSTRUCTION — app.js
-   Lenis smooth scroll + GSAP ScrollTrigger + Canvas frame scrubbing
+   Vanilla JS only: no scroll-jacking, no heavy per-frame canvas work —
+   keeps things light and smooth on mobile.
 ═══════════════════════════════════════════════════════════════════ */
 
 (function () {
   "use strict";
 
-  // ─── Config ──────────────────────────────────────────────────────
-  const FRAME_DIR   = "frames/";
-  const FRAME_EXT   = ".jpg";
-  const FRAME_COUNT = 121;
-  const FRAME_SPEED = 1; // last frame lands at the end of the scroll-container trigger range
+  const navToggle   = document.getElementById("nav-toggle");
+  const siteNav     = document.querySelector(".site-nav");
+  const navBackdrop = document.getElementById("nav-backdrop");
+  const quoteForm   = document.getElementById("quote-form");
+  const formSuccess = document.getElementById("form-success");
 
-  const MARQUEE_ENTER = 0.08;
-  const MARQUEE_LEAVE = 0.92;
-  const HERO_FADE_END = 0.08;
-
-  // ─── DOM refs ────────────────────────────────────────────────────
-  const heroOverlay     = document.getElementById("hero-overlay");
-  const canvas          = document.getElementById("canvas");
-  const ctx              = canvas.getContext("2d");
-  const scrollContainer = document.getElementById("scroll-container");
-  const marqueeWrap     = document.getElementById("marquee-materials");
-  const marqueeText     = marqueeWrap.querySelector(".marquee-text");
-  const navToggle       = document.getElementById("nav-toggle");
-  const siteNav         = document.querySelector(".site-nav");
-  const quoteForm       = document.getElementById("quote-form");
-  const formSuccess     = document.getElementById("form-success");
-
-  // ─── State ───────────────────────────────────────────────────────
-  let frames       = new Array(FRAME_COUNT).fill(null);
-  let currentFrame = 0;
-  let bgColor      = "#15130f";
-
-  // ─── Utilities ───────────────────────────────────────────────────
-  function pad(n, len) { return String(n).padStart(len, "0"); }
-  function clamp(val, min, max) { return Math.max(min, Math.min(max, val)); }
-
-  // ─── Canvas resize ───────────────────────────────────────────────
-  function resizeCanvas() {
-    const dpr = window.devicePixelRatio || 1;
-    canvas.width  = window.innerWidth  * dpr;
-    canvas.height = window.innerHeight * dpr;
-    canvas.style.width  = window.innerWidth  + "px";
-    canvas.style.height = window.innerHeight + "px";
-    ctx.setTransform(1, 0, 0, 1, 0, 0);
-    ctx.scale(dpr, dpr);
-    if (frames[currentFrame]) drawFrame(currentFrame);
+  function openNav() {
+    siteNav.classList.add("nav-open");
+    navToggle.classList.add("open");
+    navBackdrop.classList.add("show");
   }
-  window.addEventListener("resize", resizeCanvas);
-
-  function sampleBgColor(img) {
-    const oc = document.createElement("canvas");
-    oc.width = oc.height = 4;
-    oc.getContext("2d").drawImage(img, 0, 0, 4, 4);
-    const d = oc.getContext("2d").getImageData(0, 0, 1, 1).data;
-    bgColor = "rgb(" + d[0] + "," + d[1] + "," + d[2] + ")";
+  function closeNav() {
+    siteNav.classList.remove("nav-open");
+    navToggle.classList.remove("open");
+    navBackdrop.classList.remove("show");
   }
 
-  function drawFrame(index) {
-    const img = frames[index];
-    if (!img) return;
-    const cw = window.innerWidth, ch = window.innerHeight;
-    const iw = img.naturalWidth || img.width;
-    const ih = img.naturalHeight || img.height;
-    const scale = Math.max(cw / iw, ch / ih);
-    const dw = iw * scale, dh = ih * scale;
-    const dx = (cw - dw) / 2, dy = (ch - dh) / 2;
-    ctx.fillStyle = bgColor;
-    ctx.fillRect(0, 0, cw, ch);
-    ctx.drawImage(img, dx, dy, dw, dh);
-  }
-
-  // ─── Frame loader ────────────────────────────────────────────────
-  // Frame 0 loads first and unblocks the page immediately; the rest
-  // stream in behind it so scrubbing has no visible loading screen.
-  function loadFrames(onFirstFrameReady) {
-    const first = new Image();
-    first.onload = function () {
-      frames[0] = first;
-      sampleBgColor(first);
-      drawFrame(0);
-      onFirstFrameReady();
-      loadRemainingFrames();
-    };
-    first.onerror = function () {
-      onFirstFrameReady();
-      loadRemainingFrames();
-    };
-    first.src = FRAME_DIR + "frame_0001" + FRAME_EXT;
-  }
-
-  function loadRemainingFrames() {
-    for (let i = 1; i < FRAME_COUNT; i++) {
-      (function (idx) {
-        const img = new Image();
-        img.onload = function () {
-          frames[idx] = img;
-          if (idx % 20 === 0) sampleBgColor(img);
-        };
-        img.src = FRAME_DIR + "frame_" + pad(idx + 1, 4) + FRAME_EXT;
-      })(i);
-    }
-  }
-
-  // ─── Hero entrance animation ──────────────────────────────────────
-  function animateHero() {
-    const words     = heroOverlay.querySelectorAll(".hero-word");
-    const tagline   = heroOverlay.querySelector(".hero-tagline");
-    const indicator = heroOverlay.querySelector(".hero-scroll-indicator");
-
-    gsap.timeline({ delay: 0.3 })
-      .to(words,     { opacity: 1, y: 0, duration: 1.1, stagger: 0.18, ease: "power4.out" })
-      .to(tagline,   { opacity: 1, duration: 0.9, ease: "power2.out" }, "-=0.5")
-      .to(indicator, { opacity: 1, duration: 0.8, ease: "power2.out" }, "-=0.3");
-  }
-
-  // ─── Lenis smooth scroll ──────────────────────────────────────────
-  function initLenis() {
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: function (t) { return Math.min(1, 1.001 - Math.pow(2, -10 * t)); },
-      smoothWheel: true
+  function initNavToggle() {
+    navToggle.addEventListener("click", function () {
+      if (siteNav.classList.contains("nav-open")) closeNav(); else openNav();
     });
-    lenis.on("scroll", ScrollTrigger.update);
-    gsap.ticker.add(function (time) { lenis.raf(time * 1000); });
-    gsap.ticker.lagSmoothing(0);
-
-    document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
-      anchor.addEventListener("click", function (e) {
-        const id = anchor.getAttribute("href");
-        const target = id === "#" || id === "#top" ? document.documentElement : document.querySelector(id);
-        if (!target) return;
-        e.preventDefault();
-        lenis.scrollTo(target, { offset: 0, duration: 1.4 });
-        if (siteNav.classList.contains("nav-open")) closeNav();
-      });
+    navBackdrop.addEventListener("click", closeNav);
+    document.querySelectorAll('.site-nav a').forEach(function (a) {
+      a.addEventListener("click", closeNav);
     });
   }
 
-  function initHeroOverlayFade() {
-    ScrollTrigger.create({
-      trigger: scrollContainer,
-      start: "top top",
-      end: "bottom bottom",
-      scrub: true,
-      onUpdate: function (self) {
-        const p = self.progress;
-        const opacity = clamp(1 - p / HERO_FADE_END, 0, 1);
-        heroOverlay.style.opacity = opacity;
-        heroOverlay.style.pointerEvents = opacity < 0.05 ? "none" : "auto";
-      }
+  function initQuoteForm() {
+    quoteForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      quoteForm.querySelectorAll("input, select, textarea, button").forEach(function (el) { el.disabled = true; });
+      formSuccess.hidden = false;
     });
   }
 
-  function initFrameScrubbing() {
-    ScrollTrigger.create({
-      trigger: scrollContainer,
-      start: "top top",
-      end: "bottom bottom",
-      scrub: true,
-      onUpdate: function (self) {
-        const accelerated = Math.min(self.progress * FRAME_SPEED, 1);
-        const index = Math.min(Math.floor(accelerated * FRAME_COUNT), FRAME_COUNT - 1);
-        if (index !== currentFrame) {
-          currentFrame = index;
-          requestAnimationFrame(function () { drawFrame(currentFrame); });
-        }
-      }
-    });
-  }
-
-  function initMarquee() {
-    gsap.to(marqueeText, {
-      xPercent: -25,
-      ease: "none",
-      scrollTrigger: {
-        trigger: scrollContainer,
-        start: "top top",
-        end: "bottom bottom",
-        scrub: true
-      }
-    });
-
-    ScrollTrigger.create({
-      trigger: scrollContainer,
-      start: "top top",
-      end: "bottom bottom",
-      scrub: true,
-      onUpdate: function (self) {
-        const p = self.progress;
-        const fd = 0.04;
-        let o = 0;
-        if (p >= MARQUEE_ENTER && p <= MARQUEE_ENTER + fd) o = (p - MARQUEE_ENTER) / fd;
-        else if (p > MARQUEE_ENTER + fd && p < MARQUEE_LEAVE - fd) o = 1;
-        else if (p >= MARQUEE_LEAVE - fd && p <= MARQUEE_LEAVE) o = 1 - (p - (MARQUEE_LEAVE - fd)) / fd;
-        marqueeWrap.style.opacity = clamp(o, 0, 1).toString();
-      }
-    });
-  }
-
-  function initCounters() {
-    document.querySelectorAll(".stat-number").forEach(function (el) {
-      const decimals = parseInt(el.dataset.decimals || "0");
-      const trigger = el.closest(".stats-static") || el;
-      const finalValue = parseFloat(el.textContent);
-      gsap.from(el, {
-        textContent: 0,
-        duration: 2.2,
-        ease: "power1.out",
-        snap: { textContent: decimals === 0 ? 1 : Math.pow(10, -decimals) },
-        scrollTrigger: {
-          trigger: trigger,
-          start: "top 85%",
-          toggleActions: "play none none none"
-        },
-        onUpdate: function () {
-          el.textContent = parseFloat(el.textContent).toFixed(decimals);
-        },
-        onComplete: function () {
-          el.textContent = finalValue.toFixed(decimals);
-        }
-      });
-    });
-  }
-
+  // ─── Reveal-on-scroll (lightweight, one-shot) ─────────────────────
   function initRevealItems() {
     const observer = new IntersectionObserver(
       function (entries) {
@@ -237,38 +55,55 @@
     document.querySelectorAll(".reveal-item").forEach(function (el) { observer.observe(el); });
   }
 
-  function initNavToggle() {
-    navToggle.addEventListener("click", function () {
-      if (siteNav.classList.contains("nav-open")) closeNav(); else openNav();
-    });
-  }
-  function openNav() { siteNav.classList.add("nav-open"); navToggle.classList.add("open"); }
-  function closeNav() { siteNav.classList.remove("nav-open"); navToggle.classList.remove("open"); }
+  // ─── Stat counters (vanilla count-up, no animation library) ───────
+  function initCounters() {
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  function initQuoteForm() {
-    quoteForm.addEventListener("submit", function (e) {
-      e.preventDefault();
-      quoteForm.querySelectorAll("input, select, textarea, button").forEach(function (el) { el.disabled = true; });
-      formSuccess.hidden = false;
-    });
+    function animateCount(el) {
+      const decimals = parseInt(el.dataset.decimals || "0", 10);
+      const target = parseFloat(el.textContent);
+      if (prefersReducedMotion || isNaN(target)) return;
+
+      const duration = 1400;
+      const start = performance.now();
+
+      function tick(now) {
+        const p = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - p, 3);
+        el.textContent = (target * eased).toFixed(decimals);
+        if (p < 1) requestAnimationFrame(tick);
+        else el.textContent = target.toFixed(decimals);
+      }
+      requestAnimationFrame(tick);
+    }
+
+    const observer = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { animateCount(e.target); observer.unobserve(e.target); }
+        });
+      },
+      { threshold: 0.4 }
+    );
+    document.querySelectorAll(".stat-number").forEach(function (el) { observer.observe(el); });
   }
 
-  // ─── Bootstrap ───────────────────────────────────────────────────
+  // ─── Pause hero video for reduced-motion users ────────────────────
+  function initHeroVideo() {
+    const video = document.querySelector(".hero-video");
+    if (!video) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      video.pause();
+      video.removeAttribute("autoplay");
+    }
+  }
+
   function bootstrap() {
-    gsap.registerPlugin(ScrollTrigger);
-    resizeCanvas();
     initNavToggle();
     initQuoteForm();
-
-    loadFrames(function () {
-      animateHero();
-      initLenis();
-      initHeroOverlayFade();
-      initFrameScrubbing();
-      initMarquee();
-      initCounters();
-      initRevealItems();
-    });
+    initRevealItems();
+    initCounters();
+    initHeroVideo();
   }
 
   if (document.readyState === "loading") {

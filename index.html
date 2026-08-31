@@ -27,57 +27,55 @@
   <a href="#contact" class="btn-quote">Get a Quote</a>
   <button id="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
 </header>
+<div id="nav-backdrop"></div>
 
-<!-- ═══ FIXED CANVAS (hero frame scrub) ═══ -->
-<canvas id="canvas"></canvas>
-
-<!-- ═══ HERO OVERLAY ═══ -->
-<div id="hero-overlay">
-  <h1 class="hero-title">
-    <span class="hero-word">YARE</span>
-    <span class="hero-word hero-word-sub">CONSTRUCTION</span>
-  </h1>
-  <p class="hero-tagline">Design-and-build, from the River Yare outward.</p>
+<!-- ═══ HERO (ambient looping video, no scroll-scrub) ═══ -->
+<section id="top" class="hero-section">
+  <video class="hero-video" autoplay muted loop playsinline poster="images/hero_end.jpg">
+    <source src="images/hero_video.mp4" type="video/mp4">
+  </video>
+  <div class="hero-scrim"></div>
+  <div class="hero-content">
+    <h1 class="hero-title">
+      <span class="hero-word">YARE</span>
+      <span class="hero-word hero-word-sub">CONSTRUCTION</span>
+    </h1>
+    <p class="hero-tagline">Design-and-build, from the River Yare outward.</p>
+  </div>
   <div class="hero-scroll-indicator">
     <span>SCROLL</span>
     <div class="scroll-line"></div>
   </div>
+</section>
+
+<!-- ═══ PHILOSOPHY (static, three-up) ═══ -->
+<section class="philosophy-section">
+  <div class="philosophy-item reveal-item">
+    <div class="section-label-static">001 &mdash; THE FRAME</div>
+    <h2 class="philosophy-heading">Every build starts with steel.</h2>
+    <p>Portal frames and precision-cut timber studwork, engineered and signed off before a single board goes up. What you can't see is what keeps the building honest for the next fifty years.</p>
+  </div>
+  <div class="philosophy-item reveal-item">
+    <div class="section-label-static">002 &mdash; THE CRAFT</div>
+    <h2 class="philosophy-heading">Finished by hand, not by shortcut.</h2>
+    <p>Timber cladding cut and fitted on site, corten steel left to weather naturally, joinery checked twice before it's ever called done.</p>
+  </div>
+  <div class="philosophy-item reveal-item">
+    <div class="section-label-static">003 &mdash; THE RESULT</div>
+    <h2 class="philosophy-heading">From site to sanctuary.</h2>
+    <p>The same plot, the same bones &mdash; just finished. Every Yare project ends the way it started: built to be lived in, not just looked at.</p>
+  </div>
+</section>
+
+<!-- ═══ MARQUEE (CSS-only infinite scroll) ═══ -->
+<div class="marquee-strip">
+  <div class="marquee-track">
+    <span class="marquee-text">STEEL&nbsp;&mdash;&nbsp;TIMBER&nbsp;&mdash;&nbsp;GLASS&nbsp;&mdash;&nbsp;STONE&nbsp;&mdash;&nbsp;</span>
+    <span class="marquee-text" aria-hidden="true">STEEL&nbsp;&mdash;&nbsp;TIMBER&nbsp;&mdash;&nbsp;GLASS&nbsp;&mdash;&nbsp;STONE&nbsp;&mdash;&nbsp;</span>
+  </div>
 </div>
 
-<!-- ═══ MARQUEE (fixed) ═══ -->
-<div id="marquee-materials" class="marquee-wrap">
-  <div class="marquee-text">STEEL&nbsp;&mdash;&nbsp;TIMBER&nbsp;&mdash;&nbsp;GLASS&nbsp;&mdash;&nbsp;STONE&nbsp;&mdash;&nbsp;STEEL&nbsp;&mdash;&nbsp;TIMBER&nbsp;&mdash;&nbsp;GLASS&nbsp;&mdash;&nbsp;STONE&nbsp;&mdash;&nbsp;STEEL&nbsp;&mdash;&nbsp;TIMBER&nbsp;&mdash;&nbsp;GLASS&nbsp;&mdash;&nbsp;STONE&nbsp;&mdash;&nbsp;</div>
-</div>
-
-<!-- ═══ SCROLL CONTAINER (text overlays during hero scrub) ═══ -->
-<div id="scroll-container">
-  <section class="scroll-section align-left">
-    <div class="section-inner">
-      <div class="section-label">001 &mdash; THE FRAME</div>
-      <h2 class="section-heading">Every build starts with steel.</h2>
-      <p class="section-body">Portal frames and precision-cut timber studwork, engineered and signed off before a single board goes up. What you can't see is what keeps the building honest for the next fifty years.</p>
-    </div>
-  </section>
-
-  <section class="scroll-section align-right">
-    <div class="section-inner">
-      <div class="section-label">002 &mdash; THE CRAFT</div>
-      <h2 class="section-heading">Finished by hand, not by shortcut.</h2>
-      <p class="section-body">Timber cladding cut and fitted on site, corten steel left to weather naturally, joinery checked twice before it's ever called done.</p>
-    </div>
-  </section>
-
-  <section class="scroll-section align-left">
-    <div class="section-inner">
-      <div class="section-label">003 &mdash; THE RESULT</div>
-      <h2 class="section-heading">From site to sanctuary.</h2>
-      <p class="section-body">The same plot, the same bones &mdash; just finished. Every Yare project ends the way it started: built to be lived in, not just looked at.</p>
-    </div>
-  </section>
-</div>
-
-<!-- ═══ POST-SCROLL CONTENT (solid, covers canvas) ═══ -->
-<div id="post-scroll-wrap">
+<main>
 
   <!-- STATS -->
   <section class="stats-static">
@@ -308,11 +306,8 @@
     </div>
   </footer>
 
-</div>
+</main>
 
-<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="js/app.js"></script>
 </body>
 </html>
