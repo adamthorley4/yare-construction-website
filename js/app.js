@@ -88,6 +88,71 @@
     document.querySelectorAll(".stat-number").forEach(function (el) { observer.observe(el); });
   }
 
+  // ─── Testimonial carousel (circular, vanilla — no animation library) ──
+  function initTestimonialCarousel() {
+    const images = Array.from(document.querySelectorAll(".testimonial-image"));
+    if (!images.length) return;
+
+    const content  = document.querySelector(".testimonial-content");
+    const quoteEl  = document.getElementById("testimonial-quote");
+    const citeEl   = document.getElementById("testimonial-cite");
+    const projectEl = document.getElementById("testimonial-project");
+    const prevBtn  = document.getElementById("testimonial-prev");
+    const nextBtn  = document.getElementById("testimonial-next");
+    const total    = images.length;
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    let active = 0;
+    let autoplayTimer = null;
+
+    function applyText() {
+      const data = images[active].dataset;
+      quoteEl.textContent = data.quote;
+      citeEl.textContent = data.cite;
+      projectEl.textContent = data.project;
+    }
+
+    function render(immediate) {
+      images.forEach(function (img, i) {
+        img.classList.remove("is-active", "is-prev", "is-next");
+        if (i === active) img.classList.add("is-active");
+        else if (i === (active - 1 + total) % total) img.classList.add("is-prev");
+        else if (i === (active + 1) % total) img.classList.add("is-next");
+      });
+
+      if (immediate || prefersReducedMotion) {
+        applyText();
+        return;
+      }
+      content.classList.add("is-fading");
+      setTimeout(function () {
+        applyText();
+        content.classList.remove("is-fading");
+      }, 220);
+    }
+
+    function goTo(index) {
+      active = (index + total) % total;
+      render();
+    }
+    function next() { goTo(active + 1); stopAutoplay(); }
+    function prev() { goTo(active - 1); stopAutoplay(); }
+
+    function startAutoplay() {
+      if (prefersReducedMotion) return;
+      autoplayTimer = setInterval(function () { goTo(active + 1); }, 5000);
+    }
+    function stopAutoplay() {
+      if (autoplayTimer) clearInterval(autoplayTimer);
+    }
+
+    prevBtn.addEventListener("click", prev);
+    nextBtn.addEventListener("click", next);
+
+    render(true);
+    startAutoplay();
+  }
+
   // ─── Pause hero video for reduced-motion users ────────────────────
   function initHeroVideo() {
     const video = document.querySelector(".hero-video");
@@ -103,6 +168,7 @@
     initQuoteForm();
     initRevealItems();
     initCounters();
+    initTestimonialCarousel();
     initHeroVideo();
   }
 

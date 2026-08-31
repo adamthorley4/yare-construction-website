@@ -67,14 +67,6 @@
   </div>
 </section>
 
-<!-- ═══ MARQUEE (CSS-only infinite scroll) ═══ -->
-<div class="marquee-strip">
-  <div class="marquee-track">
-    <span class="marquee-text">STEEL&nbsp;&mdash;&nbsp;TIMBER&nbsp;&mdash;&nbsp;GLASS&nbsp;&mdash;&nbsp;STONE&nbsp;&mdash;&nbsp;</span>
-    <span class="marquee-text" aria-hidden="true">STEEL&nbsp;&mdash;&nbsp;TIMBER&nbsp;&mdash;&nbsp;GLASS&nbsp;&mdash;&nbsp;STONE&nbsp;&mdash;&nbsp;</span>
-  </div>
-</div>
-
 <main>
 
   <!-- STATS -->
@@ -219,20 +211,50 @@
   <section class="testimonials-section">
     <div class="testimonials-head reveal-item">
       <div class="section-label-static">WHAT CLIENTS SAY</div>
+      <h2 class="big-heading">Finished, and happy to say so.</h2>
     </div>
-    <div class="testimonials-grid">
-      <blockquote class="reveal-item">
-        <p>&ldquo;They treated the extension like it was their own house. Every question answered, no shortcuts.&rdquo;</p>
-        <cite>Homeowner, Norwich</cite>
-      </blockquote>
-      <blockquote class="reveal-item">
-        <p>&ldquo;The frame went up in a week and the finish was better than we'd hoped for.&rdquo;</p>
-        <cite>Client, South Norfolk</cite>
-      </blockquote>
-      <blockquote class="reveal-item">
-        <p>&ldquo;Design, planning, build &mdash; one number to call the whole way through.&rdquo;</p>
-        <cite>Homeowner, Loddon</cite>
-      </blockquote>
+
+    <div class="testimonial-carousel reveal-item">
+      <div class="testimonial-images" id="testimonial-images">
+        <img
+          class="testimonial-image"
+          src="images/gallery_01_exterior_dusk.jpg"
+          alt="Finished riverside extension, Norwich"
+          data-quote="They treated the extension like it was their own house. Every question answered, no shortcuts."
+          data-cite="Homeowner, Norwich"
+          data-project="Riverside Extension">
+        <img
+          class="testimonial-image"
+          src="images/gallery_06_kitchen_extension.jpg"
+          alt="Finished kitchen extension, South Norfolk"
+          data-quote="The frame went up in a week and the finish was better than we'd hoped for."
+          data-cite="Client, South Norfolk"
+          data-project="Kitchen Extension">
+        <img
+          class="testimonial-image"
+          src="images/gallery_03_flint_cottage.jpg"
+          alt="Finished flint cottage restoration, Loddon"
+          data-quote="Design, planning, build — one number to call the whole way through."
+          data-cite="Homeowner, Loddon"
+          data-project="Flint &amp; Brick Restoration">
+        <img
+          class="testimonial-image"
+          src="images/gallery_02_interior_vaulted.jpg"
+          alt="Finished vaulted extension, Diss"
+          data-quote="The vaulted extension gave us the open-plan space we'd been trying to fit in for years — better than the plans even showed."
+          data-cite="Homeowner, Diss"
+          data-project="Vaulted Living Space">
+      </div>
+
+      <div class="testimonial-content">
+        <div class="testimonial-project" id="testimonial-project">Riverside Extension</div>
+        <blockquote id="testimonial-quote"></blockquote>
+        <cite id="testimonial-cite"></cite>
+        <div class="testimonial-arrows">
+          <button id="testimonial-prev" aria-label="Previous testimonial">&larr;</button>
+          <button id="testimonial-next" aria-label="Next testimonial">&rarr;</button>
+        </div>
+      </div>
     </div>
   </section>
 
