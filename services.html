@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Services — Yare Construction</title>
+<meta name="description" content="Extensions, new builds, renovations and in-house design &amp; planning — Yare Construction's design-and-build services across Norfolk and Suffolk.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800;900&family=Public+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ═══ HEADER ═══ -->
+<header id="site-header">
+  <a href="index.html" class="logo">
+    <span class="logo-main">YARE</span>
+    <span class="logo-sub">CONSTRUCTION</span>
+  </a>
+  <nav class="site-nav">
+    <a href="index.html#work">Work</a>
+    <a href="services.html">Services</a>
+    <a href="process.html">Process</a>
+    <a href="about.html">About</a>
+  </nav>
+  <a href="index.html#contact" class="btn-quote">Get a Quote</a>
+  <button id="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+</header>
+<div id="nav-backdrop"></div>
+
+<main>
+
+  <!-- SERVICES -->
+  <section class="services-section page-first">
+    <div class="services-head reveal-item">
+      <div class="section-label-static">WHAT WE BUILD</div>
+      <h2 class="big-heading">Four ways in.</h2>
+    </div>
+
+    <div class="service-row align-left reveal-item">
+      <div class="service-num">01</div>
+      <div class="service-copy">
+        <h3>Extensions &amp; Additions</h3>
+        <p>Single and double-storey extensions designed to read as part of the original house &mdash; not bolted onto it.</p>
+      </div>
+    </div>
+    <div class="service-row align-right reveal-item">
+      <div class="service-num">02</div>
+      <div class="service-copy">
+        <h3>New Builds</h3>
+        <p>Ground-up self-builds across Norfolk and Suffolk, from steel frame to final coat of paint.</p>
+      </div>
+    </div>
+    <div class="service-row align-left reveal-item">
+      <div class="service-num">03</div>
+      <div class="service-copy">
+        <h3>Renovations &amp; Restorations</h3>
+        <p>Period cottages and farmhouses, brought back to standard without losing what made them worth restoring.</p>
+      </div>
+    </div>
+    <div class="service-row align-right reveal-item">
+      <div class="service-num">04</div>
+      <div class="service-copy">
+        <h3>Design &amp; Planning</h3>
+        <p>In-house drawings, planning applications and building regulations &mdash; one team, start to finish.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA / CONTACT -->
+  <section id="contact" class="cta-section">
+    <div class="cta-head reveal-item">
+      <div class="section-label-static">START YOUR PROJECT</div>
+      <h2 class="big-heading">Tell us what you're planning.</h2>
+      <p>Fill in a few details and we'll be in touch to talk through the next steps.</p>
+    </div>
+    <form id="quote-form" class="quote-form reveal-item">
+      <div class="form-row">
+        <label for="f-name">Name</label>
+        <input type="text" id="f-name" name="name" required>
+      </div>
+      <div class="form-row form-row-half">
+        <div>
+          <label for="f-email">Email</label>
+          <input type="email" id="f-email" name="email" required>
+        </div>
+        <div>
+          <label for="f-phone">Phone</label>
+          <input type="tel" id="f-phone" name="phone">
+        </div>
+      </div>
+      <div class="form-row">
+        <label for="f-type">Project Type</label>
+        <select id="f-type" name="type">
+          <option>Extension</option>
+          <option>New Build</option>
+          <option>Renovation</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <label for="f-message">Tell us about the project</label>
+        <textarea id="f-message" name="message" rows="4"></textarea>
+      </div>
+      <button type="submit" class="btn-submit">Send Enquiry</button>
+      <div id="form-success" class="form-success" hidden>Thanks &mdash; we've got your details and we'll be in touch soon.</div>
+    </form>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-top">
+      <div class="footer-logo">
+        <span class="logo-main">YARE</span>
+        <span class="logo-sub">CONSTRUCTION</span>
+      </div>
+      <nav class="footer-nav">
+        <a href="index.html#work">Work</a>
+        <a href="services.html">Services</a>
+        <a href="process.html">Process</a>
+        <a href="about.html">About</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+    </div>
+    <div class="footer-bottom">
+      <p>Norwich, Norfolk &mdash; building along the Yare and beyond.</p>
+      <p>hello@yareconstruction.co.uk &middot; 01603 000 000</p>
+      <p class="footer-copyright">&copy; 2026 Yare Construction.</p>
+    </div>
+  </footer>
+
+</main>
+
+<script src="js/app.js"></script>
+</body>
+</html>
