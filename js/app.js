@@ -153,6 +153,72 @@
     startAutoplay();
   }
 
+  // ─── Circular gallery (auto-rotate + drag + arrows, no library) ───
+  function initCircularGallery() {
+    const wrap = document.getElementById("gallery-circular");
+    const ring = document.getElementById("gallery-ring");
+    const prevBtn = document.getElementById("gallery-prev");
+    const nextBtn = document.getElementById("gallery-next");
+    if (!wrap || !ring) return;
+
+    const step = 360 / ring.children.length;
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    let rotation = 0;
+    let paused = false;
+    let dragging = false;
+    let dragStartX = 0;
+    let dragStartRotation = 0;
+
+    function applyRotation() {
+      ring.style.transform = "rotateY(" + rotation + "deg)";
+    }
+
+    function tick() {
+      if (!paused && !dragging) {
+        rotation += 0.025;
+        applyRotation();
+      }
+      requestAnimationFrame(tick);
+    }
+
+    function snapBy(steps) {
+      ring.classList.add("is-snapping");
+      rotation += steps * step;
+      applyRotation();
+      setTimeout(function () { ring.classList.remove("is-snapping"); }, 500);
+    }
+
+    if (prevBtn) prevBtn.addEventListener("click", function () { snapBy(-1); });
+    if (nextBtn) nextBtn.addEventListener("click", function () { snapBy(1); });
+
+    wrap.addEventListener("pointerenter", function () { paused = true; });
+    wrap.addEventListener("pointerleave", function () { if (!dragging) paused = false; });
+
+    ring.addEventListener("pointerdown", function (e) {
+      dragging = true;
+      ring.classList.add("is-dragging");
+      dragStartX = e.clientX;
+      dragStartRotation = rotation;
+      ring.setPointerCapture(e.pointerId);
+    });
+    ring.addEventListener("pointermove", function (e) {
+      if (!dragging) return;
+      rotation = dragStartRotation + (e.clientX - dragStartX) * 0.25;
+      applyRotation();
+    });
+    function endDrag() {
+      if (!dragging) return;
+      dragging = false;
+      ring.classList.remove("is-dragging");
+    }
+    ring.addEventListener("pointerup", endDrag);
+    ring.addEventListener("pointercancel", endDrag);
+
+    applyRotation();
+    if (!prefersReducedMotion) requestAnimationFrame(tick);
+  }
+
   // ─── Pause hero video for reduced-motion users ────────────────────
   function initHeroVideo() {
     const video = document.querySelector(".hero-video");
@@ -169,6 +235,7 @@
     initRevealItems();
     initCounters();
     initTestimonialCarousel();
+    initCircularGallery();
     initHeroVideo();
   }
 

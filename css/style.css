@@ -210,20 +210,54 @@ img { display: block; max-width: 100%; }
 }
 .process-step p { color: var(--chalk-dim); font-size: 0.92rem; }
 
-/* ─── Gallery ─────────────────────────────────────────────────────── */
-.gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
-.gallery-item { position: relative; overflow: hidden; aspect-ratio: 4/3; border-radius: 2px; }
+/* ─── Gallery (circular 3D carousel) ─────────────────────────────────
+   Ring rotation is set by JS (auto-rotate / drag / arrows) on
+   #gallery-ring only. Each item's position on the ring is fixed via
+   nth-child + CSS custom properties — never computed in JS. ─────── */
+.gallery-circular {
+  --gallery-w: 260px; --gallery-h: 195px; --gallery-radius: 340px;
+  position: relative; height: clamp(320px, 42vw, 460px);
+  margin-top: 1rem; perspective: 1800px;
+  touch-action: pan-y;
+}
+.gallery-ring {
+  position: relative; width: 100%; height: 100%;
+  transform-style: preserve-3d; cursor: grab;
+}
+.gallery-ring.is-dragging { cursor: grabbing; }
+.gallery-ring.is-snapping { transition: transform 0.5s cubic-bezier(0.16,1,0.3,1); }
+.gallery-item {
+  position: absolute; top: 50%; left: 50%;
+  width: var(--gallery-w); height: var(--gallery-h);
+  margin: calc(var(--gallery-h) / -2) 0 0 calc(var(--gallery-w) / -2);
+  overflow: hidden; border-radius: 2px;
+  backface-visibility: hidden;
+}
+.gallery-item:nth-child(1) { transform: rotateY(0deg)   translateZ(var(--gallery-radius)); }
+.gallery-item:nth-child(2) { transform: rotateY(60deg)  translateZ(var(--gallery-radius)); }
+.gallery-item:nth-child(3) { transform: rotateY(120deg) translateZ(var(--gallery-radius)); }
+.gallery-item:nth-child(4) { transform: rotateY(180deg) translateZ(var(--gallery-radius)); }
+.gallery-item:nth-child(5) { transform: rotateY(240deg) translateZ(var(--gallery-radius)); }
+.gallery-item:nth-child(6) { transform: rotateY(300deg) translateZ(var(--gallery-radius)); }
 .gallery-item img {
-  width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s cubic-bezier(0.16,1,0.3,1);
+  width: 100%; height: 100%; object-fit: cover; pointer-events: none; user-select: none;
 }
-.gallery-item:hover img { transform: scale(1.06); }
 .gallery-item figcaption {
-  position: absolute; left: 0; right: 0; bottom: 0; padding: 1.2rem 1.1rem 1rem;
-  font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.05em; color: var(--chalk);
+  position: absolute; left: 0; right: 0; bottom: 0; padding: 1.1rem 1rem 0.9rem;
+  font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.05em; color: var(--chalk);
   background: linear-gradient(0deg, rgba(21,19,15,0.92) 0%, transparent 100%);
-  opacity: 0; transform: translateY(8px); transition: opacity 0.4s ease, transform 0.4s ease;
 }
-.gallery-item:hover figcaption { opacity: 1; transform: translateY(0); }
+.gallery-arrows { display: flex; gap: 1rem; margin-top: 2rem; justify-content: center; }
+.gallery-arrows button {
+  width: 2.8rem; height: 2.8rem; border-radius: 50%; border: 1px solid var(--steel-dark);
+  background: transparent; color: var(--chalk); font-size: 1.1rem; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+.gallery-arrows button:hover { background: var(--corten); border-color: var(--corten); }
+@media (prefers-reduced-motion: reduce) {
+  .gallery-item img { transition: none; }
+}
 
 /* ─── About / Craft ───────────────────────────────────────────────── */
 .about-section { display: flex; gap: clamp(2rem, 6vw, 5rem); align-items: center; }
@@ -373,7 +407,7 @@ img { display: block; max-width: 100%; }
   .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 2.5rem; }
   .service-row, .service-row.align-right { flex-direction: column; text-align: left; gap: 1rem; }
   .process-grid { grid-template-columns: repeat(2, 1fr); }
-  .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+  .gallery-circular { --gallery-w: 200px; --gallery-h: 150px; --gallery-radius: 230px; }
   .about-section { flex-direction: column; }
   .testimonial-carousel { grid-template-columns: 1fr; gap: 3rem; }
   .testimonial-images { max-width: 26rem; margin: 0 auto; width: 100%; }
@@ -381,6 +415,7 @@ img { display: block; max-width: 100%; }
 }
 
 @media (max-width: 560px) {
-  .process-grid, .gallery-grid { grid-template-columns: 1fr; }
+  .process-grid { grid-template-columns: 1fr; }
+  .gallery-circular { --gallery-w: 140px; --gallery-h: 105px; --gallery-radius: 150px; }
   .stats-grid { grid-template-columns: 1fr; }
 }
