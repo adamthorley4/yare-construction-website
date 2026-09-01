@@ -128,18 +128,14 @@ img { display: block; max-width: 100%; }
   .hero-word, .hero-tagline, .hero-scroll-indicator { animation: none; opacity: 1; transform: none; }
 }
 
-/* ─── Philosophy (static three-up) ─────────────────────────────────── */
-.philosophy-section {
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(2rem, 4vw, 3rem);
-  padding: clamp(4rem, 8vw, 6rem) clamp(1.5rem, 5vw, 5rem);
-  max-width: 1400px; margin: 0 auto;
+/* ─── Intro (static, single centred block) ─────────────────────────── */
+.intro-section {
+  text-align: center;
+  padding: clamp(4rem, 9vw, 7rem) clamp(1.5rem, 5vw, 5rem);
 }
-.philosophy-heading {
-  font-family: var(--font-display); font-weight: 800; text-transform: uppercase;
-  font-size: clamp(1.6rem, 2.4vw, 2.2rem); line-height: 1.05; color: var(--chalk);
-  margin-bottom: 1rem;
-}
-.philosophy-item p { color: var(--chalk-dim); font-size: 0.95rem; max-width: 34ch; }
+.intro-content { max-width: 640px; margin: 0 auto; }
+.intro-content .big-heading { margin: 1rem 0 1.3rem; }
+.intro-content p { color: var(--chalk-dim); font-size: 1.05rem; }
 
 .section-label-static {
   font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.25em;
@@ -374,7 +370,6 @@ img { display: block; max-width: 100%; }
   #nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
   .hero-section { height: 100svh; }
-  .philosophy-section { grid-template-columns: 1fr; gap: 2.5rem; }
 
   .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 2.5rem; }
   .service-row, .service-row.align-right { flex-direction: column; text-align: left; gap: 1rem; }
