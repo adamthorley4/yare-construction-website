@@ -252,6 +252,7 @@ img { display: block; max-width: 100%; }
 }
 .testimonial-images {
   position: relative; aspect-ratio: 4/3; perspective: 1200px;
+  touch-action: pan-y;
 }
 .testimonial-image {
   position: absolute; inset: 0; width: 100%; height: 100%;
@@ -374,8 +375,17 @@ img { display: block; max-width: 100%; }
   .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 2.5rem; }
   .service-row, .service-row.align-right { flex-direction: column; text-align: left; gap: 1rem; }
   .process-grid { grid-template-columns: repeat(2, 1fr); }
-  .gallery-strip { flex-direction: column; height: auto; gap: 0.6rem; }
-  .gallery-strip-item { flex: none; height: 220px; }
+  /* Swipeable horizontal strip — a tall vertical stack of 6 cards was too
+     much scrolling to get past on a phone; this keeps the section to one
+     card's height and lets touch users swipe through the rest. */
+  .gallery-strip {
+    height: 320px; gap: 0.8rem;
+    overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .gallery-strip::-webkit-scrollbar { display: none; }
+  .gallery-strip-item { flex: 0 0 78%; scroll-snap-align: center; }
+  .gallery-strip-item:hover { flex-grow: 0; }
   .gallery-strip-item figcaption { opacity: 1; transform: translateY(0); white-space: normal; }
   .gallery-strip-item::after { opacity: 1; }
   .about-section { flex-direction: column; }
@@ -386,7 +396,8 @@ img { display: block; max-width: 100%; }
 
 @media (max-width: 560px) {
   .process-grid { grid-template-columns: 1fr; }
-  .gallery-strip-item { height: 180px; }
+  .gallery-strip { height: 260px; }
+  .gallery-strip-item { flex-basis: 82%; }
   .stats-grid { grid-template-columns: repeat(2, 1fr); row-gap: 2.2rem; column-gap: 1rem; }
   .stat-number, .stat-prefix, .stat-suffix { font-size: clamp(2rem, 9vw, 2.6rem); }
   .stat-label { font-size: 0.6rem; margin-top: 0.5rem; }

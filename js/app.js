@@ -149,6 +149,27 @@
     prevBtn.addEventListener("click", prev);
     nextBtn.addEventListener("click", next);
 
+    // ─ Swipe (touch/pointer drag left-right, in addition to the arrows) ─
+    const imagesWrap = document.getElementById("testimonial-images");
+    if (imagesWrap) {
+      let swiping = false;
+      let swipeStartX = 0;
+      imagesWrap.addEventListener("pointerdown", function (e) {
+        swiping = true;
+        swipeStartX = e.clientX;
+        imagesWrap.setPointerCapture(e.pointerId);
+      });
+      imagesWrap.addEventListener("pointerup", function (e) {
+        if (!swiping) return;
+        swiping = false;
+        const deltaX = e.clientX - swipeStartX;
+        if (Math.abs(deltaX) > 40) {
+          if (deltaX < 0) next(); else prev();
+        }
+      });
+      imagesWrap.addEventListener("pointercancel", function () { swiping = false; });
+    }
+
     render(true);
     startAutoplay();
   }
