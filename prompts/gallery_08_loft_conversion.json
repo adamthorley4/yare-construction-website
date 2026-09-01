@@ -1,0 +1,5 @@
+{
+  "prompt": "Interior architectural photograph, 28mm lens at f/6.3, ISO 320, eye-level view inside a finished loft conversion bedroom in a UK house. Sloped ceiling following the roof pitch with two white-painted exposed roof rafters left as a feature, a large flush white-framed roof window set into the slope flooding the room with daylight, engineered oak flooring, a low platform bed with linen bedding positioned under the low eave, a built-in wardrobe fitted into the eaves storage on one side. Soft midday daylight falling directly through the roof window creating a bright diagonal light pattern on the floor, natural colour temperature, faint dust motes visible in the light beam. Crisp architectural photography detail front to back, real material texture on the timber and plaster, no over-processing.",
+  "negative_prompt": "illustration, CGI, render, plastic texture, oversaturation, lens flare, people, text, watermark, cartoon, over-styled staging, clutter",
+  "api_parameters": { "resolution": "2K", "output_format": "jpg", "aspect_ratio": "3:2" }
+}

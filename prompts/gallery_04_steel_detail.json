@@ -1,5 +1,0 @@
-{
-  "prompt": "Macro architectural detail photograph, 100mm macro lens at f/4, ISO 200, shallow depth of field. Extreme close-up of a bolted structural steel beam connection on an active construction site: a galvanised steel I-beam junction with visible hot-dip galvanising crystalline pattern, four hex bolts torqued into a base plate, faint surface rust bleeding from one bolt head, weld seams visible along one flange with slight spatter texture. Overcast daylight, soft even lighting with no harsh reflections, background softly blurred showing an out-of-focus scaffold pole. Tack sharp focus on the nearest bolt head with natural falloff, visible metal grain and machining marks, no retouching.",
-  "negative_prompt": "illustration, CGI, render, plastic texture, oversaturation, lens flare, people, text, watermark, cartoon, clean unrealistic shine, studio lighting",
-  "api_parameters": { "resolution": "2K", "output_format": "jpg", "aspect_ratio": "4:5" }
-}
