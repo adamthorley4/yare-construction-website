@@ -344,6 +344,17 @@ img { display: block; max-width: 100%; }
 }
 .footer-copyright { margin-top: 1.2rem; color: var(--steel-dark) !important; }
 
+.creek-credit {
+  text-align: center; margin-top: 2rem; padding-top: 1.5rem;
+  border-top: 1px solid var(--steel-dark);
+}
+.creek-credit a {
+  font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--steel);
+  transition: color 0.3s ease;
+}
+.creek-credit a:hover { color: var(--corten-light); }
+
 /* ═══════════════════════════════════════════════════════════════════
    RESPONSIVE
 ═══════════════════════════════════════════════════════════════════ */
